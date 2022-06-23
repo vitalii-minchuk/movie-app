@@ -1,27 +1,30 @@
 import React from "react"
-import { API } from "../API"
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../API"
+import { useHomeFetch } from "../hooks/useHomeFetch"
+import NoImg from "../images/no_image.jpg"
+import Grid from "./Grid"
+import HeroImage from "./HeroImage"
 
 const Home = () => {
-  const [isLoading, setIsLoading] = React.useState(false)
-  const [error, setError] = React.useState(false)
+  const { state, error, isLoading } = useHomeFetch()
+  const movie = state.results[11]
+console.log({ state, error, isLoading });
 
-  const fetchMovies = async () => {
-    try {
-      setIsLoading(true)
-      console.log(await API.fetchData())
-      setIsLoading(false)
-    } catch (error) {
-      setError(true)
-    }
-  }
-
-  React.useEffect(() => {
-    fetchMovies()
-  }, [])
-
-  return(
+  return (
     <>
-      <button>ok</button>
+      {movie
+        ? <HeroImage
+            image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}`}
+            title={movie.original_title}
+            text={movie.overview}
+          />
+        : null
+      }
+      <Grid header={isLoading ? "" : "Popular Movies"}>
+        {state.results.map(movie => (
+          <div>{movie.title}</div>
+        ))}
+      </Grid>
     </>
   )
 }

@@ -9,9 +9,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <Home />
-      <h1>hello</h1>
-      <p>lkd;fs'lgk sjdgksjgkjs j spsjdgpsj</p>
-      fgjsfj
+      
     </div>
   );
 }
