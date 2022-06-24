@@ -8,12 +8,13 @@ import Grid from "./Grid"
 import HeroImage from "./HeroImage"
 import Progress from "./Progress"
 import SearchBar from "./SearchBar"
+import Slide from "./Slide"
 
 const Home = () => {
-  const { state, error, isLoading, setSearchTerm, searchTerm } = useHomeFetch()
+  const { state, error, isLoading, setSearchTerm, searchTerm, setIsShowMore } = useHomeFetch()
   const movie = state.results[10]
 
-  if(error) {return (<div>Eror</div>)}
+  if(error) return <div>Something went wrong ...</div>
 
   return (
     <>
@@ -26,10 +27,11 @@ const Home = () => {
         : null
       }
       <SearchBar setSearchTerm={setSearchTerm} />
-      {isLoading &&
-        <Progress />
-      }
-      <Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
+      {isLoading && <Progress />}
+
+
+
+      <Slide header={"Popular TV Shows"}>
         {state.results.map(movie => (
           <Card
             key={movie.id}
@@ -40,11 +42,35 @@ const Home = () => {
               : NoImg
             }
           >
+          </Card>
+          ))
+        }
+      </Slide>
+
+
+
+
+
+      <Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
+        {state.results.map(movie => (
+          <Card
+            key={movie.id}
+            clickable
+            movieId={movie.id}
+            image={movie.poster_path
+              ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+              : NoImg
+            }
+          >
             {movie.title}
           </Card>
         ))}
       </Grid>
-      <Button text="Show more" />
+      {isLoading
+        ? <Progress />
+        : <Button text="Load more" callback={() => setIsShowMore(true)} />
+      }
+      
       
     </>
   )

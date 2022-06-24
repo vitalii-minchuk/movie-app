@@ -3,7 +3,7 @@ import { Wrapper } from "./Button.styles"
 
 const Button = ({ text, callback }) => {
   return (
-    <Wrapper>
+    <Wrapper type="button" onClick={callback}>
       {text}
     </Wrapper>
   )

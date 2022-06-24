@@ -13,9 +13,12 @@ export const Wrapper = styled.button`
   cursor: pointer;
   transition: all .3s;
   border: none;
-  
 
   :hover {
     opacity: 0.8;
+  }
+
+  @media (max-width: 800px) {
+    max-width: 300px;
   }
 `

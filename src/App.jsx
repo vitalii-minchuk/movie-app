@@ -1,10 +1,10 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import Header from './components/Header';
-import Home from './components/Home';
-import Movie from './components/Movie';
-import NotFound from './components/NotFound';
-import { GlobalStyle } from './GlobalStyle';
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import "./App.css"
+import Header from "./components/Header"
+import Home from "./components/Home"
+import Movie from "./components/Movie"
+import NotFound from "./components/NotFound"
+import { GlobalStyle } from "./GlobalStyle"
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="*" element={ <NotFound /> } />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
