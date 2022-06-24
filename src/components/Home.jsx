@@ -1,18 +1,23 @@
 import React from "react"
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../API"
+import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "../API"
 import { useHomeFetch } from "../hooks/useHomeFetch"
 import NoImg from "../images/no_image.jpg"
+import Button from "./Button"
+import Card from "./Card"
 import Grid from "./Grid"
 import HeroImage from "./HeroImage"
+import Progress from "./Progress"
+import SearchBar from "./SearchBar"
 
 const Home = () => {
-  const { state, error, isLoading } = useHomeFetch()
-  const movie = state.results[11]
-console.log({ state, error, isLoading });
+  const { state, error, isLoading, setSearchTerm, searchTerm } = useHomeFetch()
+  const movie = state.results[10]
+
+  if(error) {return (<div>Eror</div>)}
 
   return (
     <>
-      {movie
+      {!searchTerm && movie
         ? <HeroImage
             image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}`}
             title={movie.original_title}
@@ -20,11 +25,27 @@ console.log({ state, error, isLoading });
           />
         : null
       }
-      <Grid header={isLoading ? "" : "Popular Movies"}>
+      <SearchBar setSearchTerm={setSearchTerm} />
+      {isLoading &&
+        <Progress />
+      }
+      <Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
         {state.results.map(movie => (
-          <div>{movie.title}</div>
+          <Card
+            key={movie.id}
+            clickable={true}
+            movieId={movie.id}
+            image={movie.poster_path
+              ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+              : NoImg
+            }
+          >
+            {movie.title}
+          </Card>
         ))}
       </Grid>
+      <Button text="Show more" />
+      
     </>
   )
 }
