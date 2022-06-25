@@ -9,6 +9,7 @@ import HeroImage from "./HeroImage"
 import Progress from "./Progress"
 import SearchBar from "./SearchBar"
 import Slide from "./Slide"
+import Video from "./YouTube"
 
 const Home = () => {
   const { state, error, isLoading, setSearchTerm, searchTerm, setIsShowMore } = useHomeFetch()
@@ -17,7 +18,15 @@ const Home = () => {
   if(error) return <div>Something went wrong ...</div>
 
   return (
-    <>
+    <React.Fragment>
+
+
+
+      
+
+
+
+
       {!searchTerm && movie
         ? <HeroImage
             image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}`}
@@ -72,7 +81,7 @@ const Home = () => {
       }
       
       
-    </>
+    </React.Fragment>
   )
 }
 
