@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"
 import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../API"
 import { useMovieFetch } from "../hooks/useMovieFetch"
 import BreadCrumb from "./BreadCrumb"
+import MovieInfo from "./MovieInfo"
+import MovieInfoBar from "./MovieInfoBar"
 import Progress from "./Progress"
 
 const Movie = () => {
@@ -10,16 +12,17 @@ const Movie = () => {
   const { state: movie, loading, error } = useMovieFetch(movieId)
 
 
-console.log(movie);
+
   if (loading) return <Progress />
 
   if (error) return <div>Something went wrong ...</div>
   
   return(
-    <>
-    <BreadCrumb title={movie.original_title} />
-      {/* <img src={movie.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}` : ""} alt="movie poster" /> */}
-    </>
+    <React.Fragment>
+      <BreadCrumb title={movie.original_title} />
+      <MovieInfo movie={movie} movieId={movieId} />
+      <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue} />
+    </React.Fragment>
   )
 }
 

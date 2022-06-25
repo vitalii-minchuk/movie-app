@@ -37,5 +37,4 @@ export const API = {
 
     return data
   }
-
 }
