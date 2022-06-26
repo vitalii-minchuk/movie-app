@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react"
 import { API } from "../API"
+import { MovieState } from "../declaration"
 
 
-export const useMovieFetch = movieId => {
-  const [state, setState] = useState([])
-  const [error, setError] = useState(false)
-  const [loading, setLoading] = useState(false)
+export const useMovieFetch = (movieId: number) => {
+  const [state, setState] = useState<MovieState>({} as MovieState)
+  const [error, setError] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const fetchMovie = useCallback(async () => {
     try {

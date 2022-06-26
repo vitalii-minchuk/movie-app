@@ -1,7 +1,7 @@
 import React from "react"
 import { Spinner } from "./Progress.styles"
 
-const Progress = () => {
+const Progress: React.FC = () => {
   return (
     <Spinner />
   )

@@ -1,4 +1,4 @@
-import { Credits, MovieType, ResponseDataType } from "./@types/declaration";
+import { Credits, MovieType, ResponseDataType } from "./declaration";
 
 declare const process: {
   env: {

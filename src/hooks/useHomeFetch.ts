@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { API } from "../API"
-import { MovieType, ResponseDataType } from "../@types/declaration"
+import { MovieType, ResponseDataType } from "../declaration"
 
 const initialState = {
   results: [] as MovieType[],

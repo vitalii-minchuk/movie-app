@@ -1,10 +1,18 @@
 import React from "react"
 import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../../API"
 import { Content, Image, Text, Wrapper } from "./MovieInfo.styles"
+//@ts-ignore
 import NoImage from "../../images/no_image.jpg"
+import { CrewType, MovieState } from "../../declaration"
 
-const MovieInfo = ({ movie, onPlay, trailerUrl }) => {
-  const image = movie.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}` : NoImage
+type MovieInfoProps = {
+  movie: MovieState
+  trailerUrl: string
+  onPlay: () => void
+}
+
+const MovieInfo: React.FC<MovieInfoProps> = ({ movie, onPlay, trailerUrl }) => {
+  const image: string = movie.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}` : NoImage
 
   return (
     <Wrapper backdrop={image}>
@@ -21,8 +29,8 @@ const MovieInfo = ({ movie, onPlay, trailerUrl }) => {
             </div>
             <div className="directors">
               <h3>DIRECTOR{movie.directors?.length > 1 ? "S" : ""}</h3>
-              {movie.directors?.map((director) => (
-                <p key={director.credit_id}>{director.name}</p>
+              {movie.directors?.map((dir: CrewType) => (
+                <p key={dir.credit_id}>{dir.name}</p>
               ))}
             </div>
           </div>

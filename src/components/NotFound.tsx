@@ -1,8 +1,8 @@
 import React from "react"
 
-const NotFound = () => {
+const NotFound: React.FC = () => {
   return(
-    <>NotFound</>
+    <h1>Not Found</h1>
   )
 }
 

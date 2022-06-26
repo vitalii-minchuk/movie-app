@@ -31,6 +31,7 @@ export type CrewType = {
   job: string
   name: string
   credit_id: number
+  department: string
 }
 
 export type Credits = {
@@ -39,11 +40,7 @@ export type Credits = {
   crew: Array<CrewType>
 }
 
-declare global {
-  interface Window {
-    MyVendorThing: MyVendorType;
-  }
-}
+export type MovieState = Movie & { actors: Cast[], directors: Crew[] }
 
 declare module "*.png" {
   export default "" as string;

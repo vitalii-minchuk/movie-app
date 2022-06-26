@@ -2,11 +2,15 @@ import React from "react"
 import YouTube from "react-youtube"
 import { Content, Wrapper } from "./YouTube.styles"
 
-const Video = ({ videoId }) => {
+type VideoProps = {
+  videoId: string
+}
+
+const Video: React.FC<VideoProps> = ({ videoId }) => {
   const opts = {
     height: "500",
     width: "100%",
-    position: "ablolute",
+    position: "absolute",
     playerVars: {
       autoplay: 1,
     },
@@ -16,7 +20,6 @@ const Video = ({ videoId }) => {
     <Wrapper>
       <Content>
         <YouTube
-          containerClassName={Content}
           opts={opts}
           videoId={videoId}
         />

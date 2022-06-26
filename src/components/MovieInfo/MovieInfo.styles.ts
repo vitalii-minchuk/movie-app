@@ -1,6 +1,10 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.div`
+type Props = {
+  backdrop: string
+}
+
+export const Wrapper = styled.div<Props>`
   background: url(${({backdrop}) => backdrop}) no-repeat center ;
   background-size: cover;
   padding: 20px;
@@ -14,7 +18,6 @@ export const Wrapper = styled.div`
       opacity: 1;
     }
   }
-  
 `
 
 export const Content = styled.div`
@@ -56,6 +59,7 @@ export const Text = styled.div`
     display: flex;
     justify-content: flex-start;
   }
+
   .score {
     display: flex;
     align-items: center;
@@ -69,12 +73,15 @@ export const Text = styled.div`
     border-radius: 50%;
     margin: 5px auto;
   }
+
   .directors {
     margin: 0 0 60px 40px;
+
     p {
       margin: 0;
     }
   }
+
   h1 {
     @media screen and (max-width: 768px) {
       font-size: var(--fontBig);

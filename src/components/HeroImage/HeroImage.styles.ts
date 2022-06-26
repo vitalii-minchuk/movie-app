@@ -1,13 +1,15 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.div`
+type Props ={
+  image: string
+}
+
+export const Wrapper = styled.div<Props>`
   background: url(${({image}) => image}) no-repeat center ;
   background-size: cover;
   height: 600px;
   animation: animateHeroImg 2s;
-
   background-attachment: fixed;
-    
   position: relative;
   z-index: 0;
 

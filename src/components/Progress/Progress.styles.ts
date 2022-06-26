@@ -17,5 +17,4 @@ export const Spinner = styled.div`
       transform: rotate(360deg);
     }
   }
-
 `

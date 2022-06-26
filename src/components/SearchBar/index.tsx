@@ -1,11 +1,16 @@
 import React from "react"
 import { Content, Wrapper } from "./SearchBar.styles"
+//@ts-ignore
 import SearchIcon from "../../images/search-icon.svg"
 
-const SearchBar = ({ setSearchTerm }) => {
-  const [value, setValue] = React.useState("")
+type SearchBarProps = {
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>
+}
+ 
+const SearchBar: React.FC<SearchBarProps> = ({ setSearchTerm }) => {
+  const [value, setValue] = React.useState<string>("")
 
-  const initial = React.useRef(true)
+  const initial = React.useRef<boolean>(true)
 
   React.useEffect(() => {
 

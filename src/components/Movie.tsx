@@ -1,6 +1,7 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 import { useMovieFetch } from "../hooks/useMovieFetch"
+//@ts-ignore
 import movieTrailer from "movie-trailer"
 import Cast from "./Cast"
 import BreadCrumb from "./BreadCrumb"
@@ -9,8 +10,10 @@ import MovieInfoBar from "./MovieInfoBar"
 import Progress from "./Progress"
 import Grid from "./Grid"
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../API"
+//@ts-ignore
 import NoImage from "../images/no_image.jpg"
 import Video from "./YouTube"
+import { CastType } from "../declaration"
 
 const Movie = () => {
   const [ trailerUrl, setTrailerUrl ] = React.useState("")
@@ -22,11 +25,11 @@ const Movie = () => {
         setTrailerUrl("");
       }else{
         movieTrailer(movie?.original_title || movie?.title || " ")
-        .then((url) => {
-          const urlParams = new URLSearchParams(new URL(url).search);
+        .then((url: string) => {
+          const urlParams: any = new URLSearchParams(new URL(url).search);
         setTrailerUrl(urlParams.get('v'));
         })
-        .catch((error) => console.log(error));
+        .catch((error: string) => console.log(error));
       }
     }
 
@@ -41,7 +44,7 @@ const Movie = () => {
       { trailerUrl && <Video videoId={trailerUrl}/>  }
       <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue} />
       <Grid header={"Cast"}>
-        {movie.actors?.map((actor) => (
+        {movie.actors.map((actor: CastType) => (
           <Cast
             key={actor.credit_id}
             name={actor.name}

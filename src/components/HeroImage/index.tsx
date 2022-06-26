@@ -1,7 +1,13 @@
 import React from "react"
 import { Content, Text, Wrapper } from "./HeroImage.styles"
 
-const HeroImage = ({ image, title, text}) => {
+type HeroImageProps = {
+  image: string
+  title: string
+  text: string
+}
+
+const HeroImage: React.FC<HeroImageProps> = ({ image, title, text}) => {
 
   return(
     <Wrapper image={image}>

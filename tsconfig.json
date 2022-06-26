@@ -21,6 +21,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src", "src/@types/declaration.d.ts"
+    "src", "src/declaration.d.ts"
   ]
 }
