@@ -1,12 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import "./App.css"
 import Header from "./components/Header"
 import Home from "./components/Home"
 import Movie from "./components/Movie"
 import NotFound from "./components/NotFound"
 import { GlobalStyle } from "./GlobalStyle"
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <GlobalStyle />
