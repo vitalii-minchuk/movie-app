@@ -39,3 +39,21 @@ export type Credits = {
   crew: Array<CrewType>
 }
 
+declare global {
+  interface Window {
+    MyVendorThing: MyVendorType;
+  }
+}
+
+declare module "*.png" {
+  export default "" as string;
+}
+
+declare module "*.jpg" {
+  export default "" as string;
+}
+
+declare module "*.svg" {
+  export default "" as string;
+}
+

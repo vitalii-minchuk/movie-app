@@ -1,7 +1,8 @@
 import React from "react"
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "../API"
-import { getRandomNumber, top10Filter } from "../helpers"
+import { getRandomNumber } from "../helpers"
 import { useHomeFetch } from "../hooks/useHomeFetch"
+//@ts-ignore
 import NoImg from "../images/no_image.jpg"
 import Button from "./Button"
 import Card from "./Card"
@@ -11,7 +12,7 @@ import Progress from "./Progress"
 import SearchBar from "./SearchBar"
 import Slide from "./Slide"
 
-const Home = () => {
+const Home: React.FC = () => {
   const { state, error, isLoading, setSearchTerm, searchTerm, setIsShowMore } = useHomeFetch()
 
   const movie = state.results[getRandomNumber()]
@@ -49,13 +50,6 @@ const Home = () => {
         </Slide>
         : null
       }
-
-     
-
-
-
-
-
       <Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
         {state.results.map(movie => (
           <Card
@@ -75,8 +69,6 @@ const Home = () => {
         ? <Progress />
         : <Button text="Load more" callback={() => setIsShowMore(true)} />
       }
-      
-      
     </React.Fragment>
   )
 }

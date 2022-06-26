@@ -1,7 +1,13 @@
 import React from "react"
 import { Image, Wrapper } from "./Cast.styles"
 
-const Cast = ({ name, character, imageUrl }) => {
+type CastProps = {
+  name: string
+  character: string
+  imageUrl: string
+}
+
+const Cast: React.FC<CastProps> = ({ name, character, imageUrl }) => {
   return(
     <Wrapper>
       <Image src={imageUrl} alt="actor" />

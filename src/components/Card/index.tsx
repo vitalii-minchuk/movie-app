@@ -2,7 +2,13 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { Image } from "./Card.styles"
 
-const Card = ({ image, movieId, clickable }) => {
+type CardProps = {
+  image: string
+  movieId: number
+  clickable: boolean
+}
+
+const Card: React.FC<CardProps> = ({ image, movieId, clickable }) => {
   return (
     clickable ? (
       <Link to={`/${movieId}`}>

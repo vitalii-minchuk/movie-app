@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react"
 import { API } from "../API"
+import { MovieType, ResponseDataType } from "../@types/declaration"
 
 const initialState = {
-  results: [],
+  results: [] as MovieType[],
   page: 0,
   total_pages: 0,
   total_results: 0
 }
 
 export const useHomeFetch = () => {
-  const [isShowMore, setIsShowMore] = useState(false)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [state, setState] = useState(initialState)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [isShowMore, setIsShowMore] = useState<boolean>(false)
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [state, setState] = useState<ResponseDataType>(initialState)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
 
-  const fetchMovies = async (page, searchTerm = "") => {
+  const fetchMovies = async (page: number, searchTerm: string = "") => {
     try {
       setIsLoading(true)
       const movies = await API.fetchData(page, searchTerm)
@@ -33,8 +34,6 @@ export const useHomeFetch = () => {
   useEffect(() => {
     fetchMovies(1, searchTerm)
   }, [searchTerm])
-  
-
 
   useEffect(() => {
     if (!isShowMore) return;

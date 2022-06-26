@@ -14,7 +14,6 @@ export const Image = styled.img`
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
   }
 
-
   @keyframes animateCard {
     from {
       opacity: 0;

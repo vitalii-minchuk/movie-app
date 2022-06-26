@@ -2,7 +2,13 @@ import React from "react"
 import { calcTime, convertMoney } from "../../helpers"
 import { Content, Info, Wrapper } from "./MovieInfoBar.styles"
 
-const MovieInfoBar = ({ time, budget, revenue }) => {
+type MovieInfoBarProps = {
+  time: number
+  budget: number
+  revenue: number
+}
+
+const MovieInfoBar: React.FC<MovieInfoBarProps> = ({ time, budget, revenue }) => {
   return (
     <Wrapper>
       <Content>

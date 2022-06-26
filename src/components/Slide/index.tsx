@@ -1,7 +1,12 @@
 import React from "react"
 import { Content, Wrapper } from "./Slide.styles"
 
-const Slide = ({header, children}) => {
+type SlideProps = {
+  header: string
+  children?: React.ReactNode;
+}
+
+const Slide: React.FC<SlideProps> = ({header, children}) => {
   return(
     <Wrapper>
       <h1>{header}</h1>
