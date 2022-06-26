@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Wrapper = styled.div`
   width: 100%;
   background-color: var(--darkGrey);
-  padding: 10px 0;
+  padding: 20px 0;
 `
 
 export const Content = styled.div`
@@ -18,6 +18,6 @@ export const Content = styled.div`
 
 export const Info = styled.div`
   background-color: var(--medGrey);
-  padding: 5px 15px;
-  border-radius: 40px;
+  padding: 10px 25px;
+  border-radius: 50px;
 `

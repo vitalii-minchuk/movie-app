@@ -1,40 +1,14 @@
 import React from "react"
 import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../../API"
-import Card from "../Card"
 import { Content, Image, Text, Wrapper } from "./MovieInfo.styles"
-
 import NoImage from "../../images/no_image.jpg"
-import Video from "../YouTube"
-import ReactPlayer from "react-player"
-import Button from "../Button"
 
-const MovieInfo = ({ movie, movieId }) => {
-
-  const trailer = movie.videos?.results.find(vid => vid.name === "Official Trailer")
-
+const MovieInfo = ({ movie, onPlay, trailerUrl }) => {
   const image = movie.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}` : NoImage
+
   return (
     <Wrapper backdrop={image}>
       <Content>
-        {/* <Video videoId={trailer?.key ? trailer.key : ""} /> */}
-
-        {/* <ReactPlayer url={`https://www.youtube.com/watch?v=${trailer?.key}`}
-          config={{
-            youtube: {
-              playerVars: { showinfo: 1 }
-            }
-          }}
-          playing={true}
-          width={"100%"}
-          height={"100%"}
-          style={{position: "absolute", maxHeight: "400px"}}
-         /> */}
-
-        {/* <ReactPlayer url={`https://www.youtube.com/embed/${trailer?.key}`} /> */}
-
-
-
-
         <Image src={image} alt="movie-poster" />
         <Text>
           <h1>{movie.title}</h1>
@@ -51,9 +25,10 @@ const MovieInfo = ({ movie, movieId }) => {
                 <p key={director.credit_id}>{director.name}</p>
               ))}
             </div>
-            
           </div>
-          <button>Play trailer</button>
+          <button onClick={() => onPlay()}>
+            {trailerUrl ? "Stop" : "Play trailer"}
+          </button>
         </Text>
       </Content>
     </Wrapper>

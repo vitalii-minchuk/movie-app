@@ -1,6 +1,7 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 import { useMovieFetch } from "../hooks/useMovieFetch"
+import movieTrailer from "movie-trailer"
 import Cast from "./Cast"
 import BreadCrumb from "./BreadCrumb"
 import MovieInfo from "./MovieInfo"
@@ -9,12 +10,25 @@ import Progress from "./Progress"
 import Grid from "./Grid"
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../API"
 import NoImage from "../images/no_image.jpg"
+import Video from "./YouTube"
 
 const Movie = () => {
+  const [ trailerUrl, setTrailerUrl ] = React.useState("")
   const { movieId } = useParams()
   const { state: movie, loading, error } = useMovieFetch(movieId)
-  
-  
+
+  const onPlay = () => {
+      if(trailerUrl){
+        setTrailerUrl("");
+      }else{
+        movieTrailer(movie?.original_title || movie?.title || " ")
+        .then((url) => {
+          const urlParams = new URLSearchParams(new URL(url).search);
+        setTrailerUrl(urlParams.get('v'));
+        })
+        .catch((error) => console.log(error));
+      }
+    }
 
   if (loading) return <Progress />
 
@@ -23,7 +37,8 @@ const Movie = () => {
   return(
     <React.Fragment>
       <BreadCrumb title={movie.original_title} />
-      <MovieInfo movie={movie} movieId={movieId} />
+      <MovieInfo movie={movie} movieId={movieId} onPlay={onPlay} trailerUrl={trailerUrl} />
+      { trailerUrl && <Video videoId={trailerUrl}/>  }
       <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue} />
       <Grid header={"Cast"}>
         {movie.actors?.map((actor) => (

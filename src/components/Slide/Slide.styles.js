@@ -22,10 +22,7 @@ export const Content = styled.div`
   overflow-x: scroll;
   overflow-y: visible;
   padding: 10px 0 20px;
-
   
-
-
   * {
     height: 250px;
     width: 180px
@@ -34,6 +31,7 @@ export const Content = styled.div`
   ::-webkit-scrollbar {
     width: 12px;
   }
+
   ::-webkit-scrollbar-track {
     background: orange;
     border-radius: 20px;

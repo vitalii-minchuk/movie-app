@@ -12,3 +12,7 @@ export const convertMoney = (money) => {
   })
   return formatter.format(money);
 }
+
+export const getRandomNumber = () => {
+  return Math.floor(Math.random() * (20 - 0) + 0)
+}
