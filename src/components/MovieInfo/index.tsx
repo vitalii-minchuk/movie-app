@@ -1,9 +1,8 @@
 import React from "react"
 import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../../API"
 import { Content, Image, Text, Wrapper } from "./MovieInfo.styles"
-//@ts-ignore
 import NoImage from "../../images/no_image.jpg"
-import { CrewType, MovieState } from "../../declaration"
+import { MovieState } from "../../hooks/useMovieFetch"
 
 type MovieInfoProps = {
   movie: MovieState
@@ -29,7 +28,7 @@ const MovieInfo: React.FC<MovieInfoProps> = ({ movie, onPlay, trailerUrl }) => {
             </div>
             <div className="directors">
               <h3>DIRECTOR{movie.directors?.length > 1 ? "S" : ""}</h3>
-              {movie.directors?.map((dir: CrewType) => (
+              {movie.directors?.map((dir) => (
                 <p key={dir.credit_id}>{dir.name}</p>
               ))}
             </div>

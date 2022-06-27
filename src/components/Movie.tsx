@@ -10,15 +10,13 @@ import MovieInfoBar from "./MovieInfoBar"
 import Progress from "./Progress"
 import Grid from "./Grid"
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../API"
-//@ts-ignore
 import NoImage from "../images/no_image.jpg"
 import Video from "./YouTube"
-import { CastType } from "../declaration"
 
-const Movie = () => {
+const Movie: React.FC = () => {
   const [ trailerUrl, setTrailerUrl ] = React.useState("")
   const { movieId } = useParams()
-  const { state: movie, loading, error } = useMovieFetch(movieId)
+  const { state: movie, loading, error } = useMovieFetch(Number(movieId))
 
   const onPlay = () => {
       if(trailerUrl){
@@ -40,11 +38,11 @@ const Movie = () => {
   return(
     <React.Fragment>
       <BreadCrumb title={movie.original_title} />
-      <MovieInfo movie={movie} movieId={movieId} onPlay={onPlay} trailerUrl={trailerUrl} />
+      <MovieInfo movie={movie} onPlay={onPlay} trailerUrl={trailerUrl} />
       { trailerUrl && <Video videoId={trailerUrl}/>  }
       <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue} />
       <Grid header={"Cast"}>
-        {movie.actors.map((actor: CastType) => (
+        {movie.actors?.map((actor) => (
           <Cast
             key={actor.credit_id}
             name={actor.name}

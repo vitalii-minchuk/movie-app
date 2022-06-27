@@ -2,7 +2,6 @@ import React from "react"
 import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from "../API"
 import { getRandomNumber } from "../helpers"
 import { useHomeFetch } from "../hooks/useHomeFetch"
-//@ts-ignore
 import NoImg from "../images/no_image.jpg"
 import Button from "./Button"
 import Card from "./Card"
@@ -30,7 +29,7 @@ const Home: React.FC = () => {
         : null
       }
       <SearchBar setSearchTerm={setSearchTerm} />
-      {isLoading && <Progress />}
+      {/* {isLoading && <Progress />} */}
 
       {!searchTerm && movie
         ? <Slide header={"Top 10 This Week"}>
@@ -43,8 +42,7 @@ const Home: React.FC = () => {
                 ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
                 : NoImg
               }
-            >
-            </Card>
+            />
             ))
           }
         </Slide>
@@ -52,17 +50,14 @@ const Home: React.FC = () => {
       }
       <Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
         {state.results.map(movie => (
-          <Card
-            key={movie.id}
+          <Card key={movie.id}
             clickable
             movieId={movie.id}
             image={movie.poster_path
               ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
               : NoImg
             }
-          >
-            {movie.title}
-          </Card>
+          />
         ))}
       </Grid>
       {isLoading
@@ -71,6 +66,8 @@ const Home: React.FC = () => {
       }
     </React.Fragment>
   )
+
+
 }
 
 export default Home

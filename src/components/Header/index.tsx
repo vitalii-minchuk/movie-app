@@ -1,9 +1,7 @@
 
 import React from "react"
 import { Content, LogoImg, TMDBLogoImg, Wrapper } from "./Header.styles"
-//@ts-ignore
 import RMDBLogo from "../../images/react-movie-logo.svg"
-//@ts-ignore
 import TMDBLogo from "../../images/tmdb_logo.svg"
 import { Link } from "react-router-dom"
 

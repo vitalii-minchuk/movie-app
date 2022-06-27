@@ -4,7 +4,7 @@ import { Image } from "./Card.styles"
 
 type CardProps = {
   image: string
-  movieId: number
+  movieId?: number
   clickable: boolean
 }
 

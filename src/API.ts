@@ -1,4 +1,4 @@
-import { Credits, MovieType, ResponseDataType } from "./declaration";
+import { Credits, MovieType, ResponseDataType } from "./react-app-env";
 
 declare const process: {
   env: {

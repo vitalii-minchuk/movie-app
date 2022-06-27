@@ -1,3 +1,5 @@
+/// <reference types="react-scripts" />
+
 export type MovieType = {
   id: number
   backdrop_path: string
@@ -40,8 +42,6 @@ export type Credits = {
   crew: Array<CrewType>
 }
 
-export type MovieState = Movie & { actors: Cast[], directors: Crew[] }
-
 declare module "*.png" {
   export default "" as string;
 }
@@ -53,4 +53,3 @@ declare module "*.jpg" {
 declare module "*.svg" {
   export default "" as string;
 }
-

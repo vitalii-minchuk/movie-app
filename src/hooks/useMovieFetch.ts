@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react"
 import { API } from "../API"
-import { MovieState } from "../declaration"
+import { CastType, CrewType, MovieType } from "../react-app-env"
 
+export type MovieState = MovieType & { actors: CastType[], directors: CrewType[] }
 
 export const useMovieFetch = (movieId: number) => {
   const [state, setState] = useState<MovieState>({} as MovieState)
