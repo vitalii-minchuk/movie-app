@@ -10,9 +10,14 @@ export const convertMoney = (money: number): string => {
     currency: "USD",
     minimumFractionDigits: 0
   })
-  return formatter.format(money);
+  return formatter.format(money)
 }
 
 export const getRandomNumber = (): number => {
   return Math.floor(Math.random() * (20 - 0) + 0)
 }
+
+export const isPersistedState = (stateName: string): any => {
+  const sessionState = sessionStorage.getItem(stateName)
+  return sessionState && JSON.parse(sessionState)
+};

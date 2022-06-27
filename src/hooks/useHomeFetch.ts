@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { API } from "../API"
+import { isPersistedState } from "../helpers"
 import { MovieType, ResponseDataType } from "../react-app-env"
 
 const initialState = {
@@ -32,6 +33,14 @@ export const useHomeFetch = () => {
   }
 
   useEffect(() => {
+    if (!searchTerm) {
+      const sessionState = isPersistedState("homeState")
+
+      if (sessionState) {
+        setState(sessionState)
+        return;
+      }
+    }
     fetchMovies(1, searchTerm)
   }, [searchTerm])
 
@@ -40,6 +49,11 @@ export const useHomeFetch = () => {
     fetchMovies(state.page + 1, searchTerm)
     setIsShowMore(false)
   }, [isShowMore, state.page, searchTerm])
+
+  useEffect(() => {
+    if (!searchTerm) sessionStorage.setItem("homeState", JSON.stringify(state))
+  }, [searchTerm, state])
+
 
   return { state, error, isLoading, setSearchTerm, searchTerm, setIsShowMore }
 }
